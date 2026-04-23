@@ -1,5 +1,5 @@
 {
-  "name": "noteapi",
+  "name": "E-commerce-API",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -8,9 +8,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Group 2",
   "license": "ISC",
-  "description": "",
+  "description": "E-commerce Product Catalog REST API - BeTechified Group 2",
   "dependencies": {
     "bcrypt": "^6.0.0",
     "cors": "^2.8.6",

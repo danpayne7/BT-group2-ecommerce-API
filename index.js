@@ -1,21 +1,28 @@
 const express = require("express");
-const dotenv = require("dotenv");
-const connectDB = require("./database/database");
-
-dotenv.config();
-connectDB();
-
 const app = express();
+require("dotenv").config();
+const connectDB = require("./database/database");
+const productRoutes = require("./routes/product.route");
+const RequestLogger = require("./middleWare/logger");
+const cors = require("cors");
+const errorHandler = require("./middleWare/errorHandler");
 
-app.use(express.json());
+app.use(cors());
+app.use(RequestLogger);
 
-// Routes
-app.use("/api/products", require("./routes/product.route"));
+(async () => {
+  await connectDB();
 
-app.get("/", (req, res) => {
-  res.send("API is running...");
-});
+  app.use(express.json());
 
-const PORT = process.env.PORT || 3000;
+  // Routes
+  app.use("/api", productRoutes);
+  app.get("/api", (req, res) => {
+    res.status(200).json({ message: "Api found" });
+  });
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  const PORT = process.env.PORT || 3000;
+app.use(errorHandler);
+
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+})();
