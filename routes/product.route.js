@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const { validateProduct, validateProductUpdate } = require("../Validation/product.validation.js");
+const {
+  validateProduct,
+  validateProductUpdate,
+} = require("../Validation/product.validation.js");
 const {
   createProduct,
   getProducts,
